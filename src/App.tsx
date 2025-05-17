@@ -126,6 +126,7 @@ function App() {
 >
   Log In
 </button>
+              </div>
 
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
