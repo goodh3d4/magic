@@ -121,9 +121,9 @@ function App() {
                 <a href="#" onClick={handleNavClick} className="font-semibold hover:text-magic-eden-accent transition-all duration-200 hover:scale-105">Swap</a>
               </div>
             </div>
-            <button className="h-[40px] py-0 px-3 inline-flex justify-center items-center rounded text-sm transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-105 open-modal">
+              <button className="h-[40px] open-modal py-0 px-3 open-modal inline-flex justify-center items-center open-modal rounded text-sm open-modal transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-105 open-modal">
               Log In
-            </button>
+              </button>
           </div>
           
           {/* Search Bar */}
