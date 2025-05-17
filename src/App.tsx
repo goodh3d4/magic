@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpIcon, ArrowDownIcon, ChevronDownIcon, DocumentTextIcon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { ArrowUpIcon, ArrowDownIcon, ChevronDownIcon, DocumentTextIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { Helmet } from 'react-helmet';
 
 function App() {
@@ -10,20 +10,6 @@ function App() {
   const [activeTab, setActiveTab] = useState('overview');
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [solPrice, setSolPrice] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Add click handler for modal buttons
-  useEffect(() => {
-    const handleModalClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest('.open-modal')) {
-        setIsModalOpen(true);
-      }
-    };
-
-    document.addEventListener('click', handleModalClick);
-    return () => document.removeEventListener('click', handleModalClick);
-  }, []);
 
   // Fetch SOL price every 30 seconds
   useEffect(() => {
@@ -471,30 +457,6 @@ function App() {
           </div>
         </div>
       </main>
-
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-magic-eden-secondary rounded-xl p-6 max-w-md w-full mx-4 relative">
-            <button 
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              <XMarkIcon className="w-6 h-6" />
-            </button>
-            <h2 className="text-2xl font-semibold mb-4">Connect Wallet</h2>
-            <p className="text-gray-400 mb-6">Please connect your wallet to continue.</p>
-            <div className="space-y-3">
-              <button className="w-full h-[48px] py-0 px-6 inline-flex justify-center items-center rounded-lg text-base transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-[1.02] hover:shadow-lg">
-                Phantom
-              </button>
-              <button className="w-full h-[48px] py-0 px-6 inline-flex justify-center items-center rounded-lg text-base transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-[1.02] hover:shadow-lg">
-                Solflare
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
