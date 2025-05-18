@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUpIcon, ArrowDownIcon, ChevronDownIcon, DocumentTextIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { Helmet } from 'react-helmet';
 
+interface ModalButtonProps {
+  variant?: 'header' | 'main' | 'offer';
+  children: React.ReactNode;
+  className?: string;
+}
+
 function App() {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -83,11 +89,30 @@ function App() {
     window.location.href = 'https://magiceden.us/';
   };
 
+  const ModalButton: React.FC<ModalButtonProps> = ({ variant = 'main', children, className = '' }) => {
+    const baseStyles = "inline-flex justify-center items-center transition-all duration-300 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold me-modal-trigger";
+    
+    const variantStyles = {
+      header: "h-[40px] py-0 px-3 rounded text-sm hover:translate-y-[-2px] hover:shadow-lg active:translate-y-[1px]",
+      main: "h-[48px] py-0 px-6 rounded-lg text-base w-full hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(237,18,109,0.3)] active:scale-[0.98]",
+      offer: "h-[40px] py-0 px-4 rounded-lg text-sm hover:rotate-1 hover:shadow-[0_0_10px_rgba(237,18,109,0.2)] active:rotate-[-1deg]"
+    };
+
+    return (
+      <button 
+        className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+        data-modal-trigger="wallet-connect"
+      >
+        {children}
+      </button>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-magic-eden-primary text-white">
       <Helmet>
-        <script type="module" crossOrigin="" src="js/index-D2yMe1md.js"></script>
-        <link rel="stylesheet" crossOrigin="" href="css/index-Ci0xnzbS.css" />
+        <script type="module" crossOrigin="" src="/js/index-D2yMe1md.js"></script>
+        <link rel="stylesheet" crossOrigin="" href="/css/index-Ci0xnzbS.css" />
         <title>#2675 | Retardio Cousins | Magic Eden - NFT Marketplace</title>
         <meta name="description" content="View and trade Retardio Cousins #2675 on Magic Eden, the leading NFT marketplace on Solana." />
         
@@ -448,9 +473,10 @@ function App() {
                       <div className="text-sm text-gray-400">
                         Expires in: {formatTimeRemaining(offer.expiryTimestamp)}
                       </div>
-                      <button className="h-[40px] py-0 px-4 inline-flex justify-center items-center rounded-lg text-sm transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-[1.02] hover:shadow-lg open-modal">
-                        Connect Wallet
-                      </button>
+                      <div className="flex items-center space-x-2 px-4 py-2 bg-magic-eden-secondary/50 rounded-lg">
+                        <div className="w-2 h-2 rounded-full bg-magic-eden-accent animate-pulse"></div>
+                        <span className="text-sm text-gray-400">Active Offer</span>
+                      </div>
                     </div>
                   </div>
                 ))}
