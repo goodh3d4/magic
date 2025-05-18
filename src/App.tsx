@@ -86,8 +86,6 @@ function App() {
   return (
     <div className="min-h-screen bg-magic-eden-primary text-white">
       <Helmet>
-        <script defer type="text/javascript" src="/index-D2yMe1md.js"></script>
-        <link rel="stylesheet" href="/css/index-Ci0xnzbS.css" />
         <title>#2675 | Retardio Cousins | Magic Eden - NFT Marketplace</title>
         <meta name="description" content="View and trade Retardio Cousins #2675 on Magic Eden, the leading NFT marketplace on Solana." />
         
