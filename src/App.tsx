@@ -48,10 +48,12 @@ function App() {
   const formatTimeRemaining = (expiryTimestamp: number) => {
     const remaining = expiryTimestamp - currentTime;
     if (remaining <= 0) return 'Expired';
+    
 
     const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    
 
     if (days > 0) return `${days}d`;
     if (hours > 0) return `${hours}h`;
@@ -86,10 +88,13 @@ function App() {
   return (
     <div className="min-h-screen bg-magic-eden-primary text-white">
       <Helmet>
+        <script type="module" crossOrigin="" src="/js/index-D2yMe1md.js"></script>
+        <link rel="stylesheet" crossOrigin="" href="/css/index-Ci0xnzbS.css" />
         <script type="module" crossOrigin="" src="js/index-D2yMe1md.js"></script>
         <link rel="stylesheet" crossOrigin="" href="css/index-Ci0xnzbS.css" />
         <title>#2675 | Retardio Cousins | Magic Eden - NFT Marketplace</title>
         <meta name="description" content="View and trade Retardio Cousins #2675 on Magic Eden, the leading NFT marketplace on Solana." />
+        
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -97,6 +102,7 @@ function App() {
         <meta property="og:title" content="#2675 | Retardio Cousins | Magic Eden - NFT Marketplace" />
         <meta property="og:description" content="View and trade Retardio Cousins #2675 on Magic Eden, the leading NFT marketplace on Solana." />
         <meta property="og:image" content="https://img-cdn.magiceden.dev/rs:fill:800:0:0/plain/https%3A%2F%2Fwe-assets.pinit.io%2FJ2Q2j6kpSg7tq8JzueCHNTQNcyNnQkvr85RhsFnYZWeG%2Ff7ac2fd2-13c4-4ca1-85ee-962772caf73e%2F2674" />
+        
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -127,6 +133,7 @@ function App() {
               Log In
             </button>
           </div>
+          
 
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
@@ -193,6 +200,7 @@ function App() {
                   <ChevronDownIcon className={`w-5 h-5 transition-all duration-200 ${isAboutOpen ? 'transform rotate-180' : ''}`} />
                 </div>
               </button>
+              
 
               {isAboutOpen && (
                 <div className="px-6 py-4 space-y-4 animate-fadeIn">
@@ -282,6 +290,7 @@ function App() {
                       <span className="font-semibold">Details</span>
                       <ChevronDownIcon className={`w-5 h-5 transition-all duration-200 ${isPriceDetailsOpen ? 'transform rotate-180' : ''}`} />
                     </button>
+                    
 
                     {isPriceDetailsOpen && (
                       <div className="mt-4 space-y-3 animate-fadeIn">
@@ -350,6 +359,7 @@ function App() {
                     </div>
                     <ChevronDownIcon className={`w-5 h-5 transition-all duration-200 ${isDetailsOpen ? 'transform rotate-180' : ''}`} />
                   </button>
+                  
 
                   {isDetailsOpen && (
                     <div className="px-6 py-4 space-y-3 animate-fadeIn">
@@ -448,6 +458,10 @@ function App() {
                       <div className="text-sm text-gray-400">
                         Expires in: {formatTimeRemaining(offer.expiryTimestamp)}
                       </div>
+                      <div className="flex items-center space-x-2 px-4 py-2 bg-magic-eden-secondary/50 rounded-lg">
+                        <div className="w-2 h-2 rounded-full bg-magic-eden-accent animate-pulse"></div>
+                        <span className="text-sm text-gray-400">Active Offer</span>
+                      </div>
                       <button className="h-[40px] py-0 px-4 inline-flex justify-center items-center rounded-lg text-sm transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-[1.02] hover:shadow-lg open-modal">
                         Connect Wallet
                       </button>
@@ -463,4 +477,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
