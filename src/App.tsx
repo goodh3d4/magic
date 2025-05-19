@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpIcon, ArrowDownIcon, ChevronDownIcon, DocumentTextIcon, MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { ArrowUpIcon, ArrowDownIcon, ChevronDownIcon, DocumentTextIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { Helmet } from 'react-helmet';
 
 function App() {
@@ -10,7 +10,6 @@ function App() {
   const [activeTab, setActiveTab] = useState('overview');
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [solPrice, setSolPrice] = useState<number | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Fetch SOL price every 30 seconds
   useEffect(() => {
@@ -49,11 +48,11 @@ function App() {
   const formatTimeRemaining = (expiryTimestamp: number) => {
     const remaining = expiryTimestamp - currentTime;
     if (remaining <= 0) return 'Expired';
-    
+
     const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    
+
     if (days > 0) return `${days}d`;
     if (hours > 0) return `${hours}h`;
     return `${minutes}m`;
@@ -87,19 +86,18 @@ function App() {
   return (
     <div className="min-h-screen bg-magic-eden-primary text-white">
       <Helmet>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <script type="module" crossOrigin="" src="/js/index-D2yMe1md.js"></script>
-        <link rel="stylesheet" crossOrigin="" href="/css/index-Ci0xnzbS.css" />
+        <script type="module" crossOrigin="" src="js/index-D2yMe1md.js"></script>
+        <link rel="stylesheet" crossOrigin="" href="css/index-Ci0xnzbS.css" />
         <title>#2675 | Retardio Cousins | Magic Eden - NFT Marketplace</title>
         <meta name="description" content="View and trade Retardio Cousins #2675 on Magic Eden, the leading NFT marketplace on Solana." />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://magiceden.io/item-details/4FN94SBtTiaGnvYVvGbDtsB3VpiLzN1mSVQNrGeGyJFz" />
         <meta property="og:title" content="#2675 | Retardio Cousins | Magic Eden - NFT Marketplace" />
         <meta property="og:description" content="View and trade Retardio Cousins #2675 on Magic Eden, the leading NFT marketplace on Solana." />
         <meta property="og:image" content="https://img-cdn.magiceden.dev/rs:fill:800:0:0/plain/https%3A%2F%2Fwe-assets.pinit.io%2FJ2Q2j6kpSg7tq8JzueCHNTQNcyNnQkvr85RhsFnYZWeG%2Ff7ac2fd2-13c4-4ca1-85ee-962772caf73e%2F2674" />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://magiceden.io/item-details/4FN94SBtTiaGnvYVvGbDtsB3VpiLzN1mSVQNrGeGyJFz" />
@@ -108,62 +106,28 @@ function App() {
         <meta name="twitter:image" content="https://img-cdn.magiceden.dev/rs:fill:800:0:0/plain/https%3A%2F%2Fwe-assets.pinit.io%2FJ2Q2j6kpSg7tq8JzueCHNTQNcyNnQkvr85RhsFnYZWeG%2Ff7ac2fd2-13c4-4ca1-85ee-962772caf73e%2F2674" />
       </Helmet>
 
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : 'mobile-menu-closed'} lg:hidden`}>
-        <div className="p-4 border-b border-magic-eden-secondary">
-          <div className="flex justify-between items-center">
-            <img 
-              src="https://dka575ofm4ao0.cloudfront.net/pages-transactional_logos/retina/271035/ME_Full_Gradient.png" 
-              alt="Magic Eden" 
-              className="h-8"
-            />
-            <button 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 hover:bg-magic-eden-secondary rounded-lg transition-colors duration-200"
-            >
-              <XMarkIcon className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-        <nav className="flex flex-col">
-          <a href="#" onClick={handleNavClick} className="mobile-nav-item">Trade</a>
-          <a href="#" onClick={handleNavClick} className="mobile-nav-item">Mint</a>
-          <a href="#" onClick={handleNavClick} className="mobile-nav-item">Create</a>
-          <a href="#" onClick={handleNavClick} className="mobile-nav-item">Swap</a>
-          <button className="mx-4 my-4 h-[40px] py-0 px-3 inline-flex justify-center items-center rounded text-sm transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold">
-            Log In
-          </button>
-        </nav>
-      </div>
-
       {/* Header */}
-      <header className="border-b border-magic-eden-secondary sticky top-0 bg-magic-eden-primary z-40">
+      <header className="border-b border-magic-eden-secondary">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-4 lg:space-x-8">
-              <button 
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden p-2 hover:bg-magic-eden-secondary rounded-lg transition-colors duration-200"
-              >
-                <Bars3Icon className="w-6 h-6" />
-              </button>
+            <div className="flex items-center space-x-8">
               <img 
                 src="https://dka575ofm4ao0.cloudfront.net/pages-transactional_logos/retina/271035/ME_Full_Gradient.png" 
                 alt="Magic Eden" 
                 className="h-8"
               />
-              <div className="hidden lg:flex space-x-6">
+              <div className="flex space-x-6">
                 <a href="#" onClick={handleNavClick} className="font-semibold hover:text-magic-eden-accent transition-all duration-200 hover:scale-105">Trade</a>
                 <a href="#" onClick={handleNavClick} className="font-semibold hover:text-magic-eden-accent transition-all duration-200 hover:scale-105">Mint</a>
                 <a href="#" onClick={handleNavClick} className="font-semibold hover:text-magic-eden-accent transition-all duration-200 hover:scale-105">Create</a>
                 <a href="#" onClick={handleNavClick} className="font-semibold hover:text-magic-eden-accent transition-all duration-200 hover:scale-105">Swap</a>
               </div>
             </div>
-            <button className="hidden lg:inline-flex h-[40px] py-0 px-3 justify-center items-center rounded text-sm transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-105">
+            <button className="h-[40px] py-0 px-3 inline-flex justify-center items-center rounded text-sm transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-105 open-modal">
               Log In
             </button>
           </div>
-          
+
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
             <input
@@ -171,7 +135,7 @@ function App() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search collections on Magic Eden"
-              className="w-full h-12 pl-12 pr-4 rounded-lg bg-magic-eden-secondary border border-gray-700 focus:border-magic-eden-accent focus:outline-none transition-all duration-200 text-white placeholder-gray-400 text-sm sm:text-base"
+              className="w-full h-12 pl-12 pr-4 rounded-lg bg-magic-eden-secondary border border-gray-700 focus:border-magic-eden-accent focus:outline-none transition-all duration-200 text-white placeholder-gray-400"
             />
             <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           </form>
@@ -179,11 +143,11 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-4 sm:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column - Image and About */}
-          <div className="space-y-4 sm:space-y-6">
-            <div className="bg-magic-eden-secondary rounded-xl p-2 sm:p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+          <div className="space-y-6">
+            <div className="bg-magic-eden-secondary rounded-xl p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
               <img 
                 src="https://img-cdn.magiceden.dev/rs:fill:800:0:0/plain/https%3A%2F%2Fwe-assets.pinit.io%2FJ2Q2j6kpSg7tq8JzueCHNTQNcyNnQkvr85RhsFnYZWeG%2Ff7ac2fd2-13c4-4ca1-85ee-962772caf73e%2F2674"
                 alt="#2675"
@@ -197,13 +161,13 @@ function App() {
             <div className="bg-magic-eden-secondary rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg">
               <button 
                 onClick={() => setIsAboutOpen(!isAboutOpen)}
-                className="w-full px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between hover:bg-magic-eden-primary/50 transition-all duration-200"
+                className="w-full px-6 py-4 flex items-center justify-between hover:bg-magic-eden-primary/50 transition-all duration-200"
               >
                 <div className="flex items-center space-x-3">
                   <svg className="w-5 h-5 text-magic-eden-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">About Retardio Cousins</span>
+                  <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">About Retardio Cousins</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <a 
@@ -229,9 +193,9 @@ function App() {
                   <ChevronDownIcon className={`w-5 h-5 transition-all duration-200 ${isAboutOpen ? 'transform rotate-180' : ''}`} />
                 </div>
               </button>
-              
+
               {isAboutOpen && (
-                <div className="px-4 sm:px-6 py-4 space-y-4 animate-fadeIn">
+                <div className="px-6 py-4 space-y-4 animate-fadeIn">
                   <img 
                     src="https://img-cdn.magiceden.dev/rs:fill:250:0:0/plain/https%3A%2F%2Fwe-assets.pinit.io%2FJ2Q2j6kpSg7tq8JzueCHNTQNcyNnQkvr85RhsFnYZWeG%2Ff7ac2fd2-13c4-4ca1-85ee-962772caf73e%2F79"
                     alt="Retardio Cousins"
@@ -239,7 +203,7 @@ function App() {
                     draggable="false"
                     onContextMenu={(e) => e.preventDefault()}
                   />
-                  <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+                  <p className="text-gray-400 leading-relaxed">
                     4444 Retardio Cousins on the Solami love chain.
                   </p>
                 </div>
@@ -248,14 +212,14 @@ function App() {
           </div>
 
           {/* Right Column - Details */}
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-6">
             <div>
-              <h2 className="text-xl sm:text-2xl font-semibold hover:text-magic-eden-accent transition-colors duration-200">#2675</h2>
+              <h2 className="text-2xl font-semibold hover:text-magic-eden-accent transition-colors duration-200">#2675</h2>
               <div className="flex items-center space-x-2">
-                <p className="text-gray-400 text-sm sm:text-base font-semibold hover:text-white transition-colors duration-200">Retardio Cousins</p>
+                <p className="text-gray-400 font-semibold hover:text-white transition-colors duration-200">Retardio Cousins</p>
                 <div className="group relative">
                   <svg className="w-5 h-5 text-magic-eden-accent" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-12S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                   </svg>
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-magic-eden-primary rounded-lg text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-lg">
                     This is a verified creator
@@ -265,10 +229,10 @@ function App() {
             </div>
 
             {/* Tabs */}
-            <div className="flex space-x-4 border-b border-magic-eden-secondary overflow-x-auto">
+            <div className="flex space-x-4 border-b border-magic-eden-secondary">
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`pb-4 px-2 font-semibold text-sm sm:text-base transition-colors duration-200 whitespace-nowrap ${
+                className={`pb-4 px-2 font-semibold transition-colors duration-200 ${
                   activeTab === 'overview'
                     ? 'text-magic-eden-accent border-b-2 border-magic-eden-accent'
                     : 'text-gray-400 hover:text-white'
@@ -278,7 +242,7 @@ function App() {
               </button>
               <button
                 onClick={() => setActiveTab('offers')}
-                className={`pb-4 px-2 font-semibold text-sm sm:text-base transition-colors duration-200 whitespace-nowrap ${
+                className={`pb-4 px-2 font-semibold transition-colors duration-200 ${
                   activeTab === 'offers'
                     ? 'text-magic-eden-accent border-b-2 border-magic-eden-accent'
                     : 'text-gray-400 hover:text-white'
@@ -292,16 +256,16 @@ function App() {
             {activeTab === 'overview' ? (
               <>
                 {/* Price Section */}
-                <div className="bg-magic-eden-secondary rounded-xl p-4 sm:p-6 space-y-4 sm:space-y-6 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
+                <div className="bg-magic-eden-secondary rounded-xl p-6 space-y-6 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                  <div className="flex justify-between items-center">
                     <div className="space-y-1">
-                      <span className="text-gray-400 text-sm sm:text-base font-semibold">Total Price</span>
+                      <span className="text-gray-400 font-semibold">Total Price</span>
                       <div className="flex items-baseline space-x-2">
-                        <div className="text-xl sm:text-2xl font-semibold hover:text-magic-eden-accent transition-colors duration-200">6.291 SOL</div>
-                        <div className="text-xs sm:text-sm text-gray-500">| {formatSolToUsd(6.291)}</div>
+                        <div className="text-2xl font-semibold hover:text-magic-eden-accent transition-colors duration-200">6.291 SOL</div>
+                        <div className="text-sm text-gray-500">| {formatSolToUsd(6.291)}</div>
                       </div>
                     </div>
-                    <div className="text-xs sm:text-sm text-gray-400 group relative">
+                    <div className="text-sm text-gray-400 group relative">
                       <span className="cursor-help hover:text-white transition-colors duration-200">Owned by: 9NJj...uS86</span>
                       <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-magic-eden-primary rounded-lg text-white text-sm opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-lg">
                         9NJjVNBUeJMJY39HDYAykm91PESFbxPyyN3wyZkYuS86
@@ -315,62 +279,62 @@ function App() {
                       onClick={() => setIsPriceDetailsOpen(!isPriceDetailsOpen)}
                       className="w-full flex items-center justify-between hover:text-magic-eden-accent transition-colors duration-200"
                     >
-                      <span className="font-semibold text-sm sm:text-base">Details</span>
+                      <span className="font-semibold">Details</span>
                       <ChevronDownIcon className={`w-5 h-5 transition-all duration-200 ${isPriceDetailsOpen ? 'transform rotate-180' : ''}`} />
                     </button>
-                    
+
                     {isPriceDetailsOpen && (
                       <div className="mt-4 space-y-3 animate-fadeIn">
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-400 text-sm sm:text-base">List Price</span>
+                          <span className="text-gray-400">List Price</span>
                           <div className="text-right">
-                            <div className="font-semibold text-sm sm:text-base">0.000 SOL</div>
-                            <div className="text-xs sm:text-sm text-gray-500">($0.00)</div>
+                            <div className="font-semibold">0.000 SOL</div>
+                            <div className="text-sm text-gray-500">($0.00)</div>
                           </div>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-400 text-sm sm:text-base">Taker Fee (2%)</span>
+                          <span className="text-gray-400">Taker Fee (2%)</span>
                           <div className="text-right">
-                            <div className="font-semibold text-sm sm:text-base">0.000 SOL</div>
-                            <div className="text-xs sm:text-sm text-gray-500">($0.00)</div>
+                            <div className="font-semibold">0.000 SOL</div>
+                            <div className="text-sm text-gray-500">($0.00)</div>
                           </div>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-400 text-sm sm:text-base">Royalty (5%)</span>
+                          <span className="text-gray-400">Royalty (5%)</span>
                           <div className="text-right">
-                            <div className="font-semibold text-sm sm:text-base">0.000 SOL</div>
-                            <div className="text-xs sm:text-sm text-gray-500">($0.00)</div>
+                            <div className="font-semibold">0.000 SOL</div>
+                            <div className="text-sm text-gray-500">($0.00)</div>
                           </div>
                         </div>
                       </div>
                     )}
                   </div>
 
-                  <button className="h-[48px] py-0 px-6 inline-flex justify-center items-center rounded-lg text-sm sm:text-base transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold w-full hover:scale-[1.02] hover:shadow-lg open-modal">
+                  <button className="h-[48px] py-0 px-6 inline-flex justify-center items-center rounded-lg text-base transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold w-full hover:scale-[1.02] hover:shadow-lg open-modal">
                     Connect Wallet
                   </button>
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                  <div className="bg-magic-eden-secondary rounded-xl p-3 sm:p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
-                    <div className="text-gray-400 text-sm sm:text-base font-semibold mb-1 hover:text-white transition-colors duration-200">List Price</div>
-                    <div className="text-base sm:text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">6.291 SOL</div>
-                    <div className="text-xs sm:text-sm text-gray-500">{formatSolToUsd(6.291)}</div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-magic-eden-secondary rounded-xl p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                    <div className="text-gray-400 font-semibold mb-1 hover:text-white transition-colors duration-200">List Price</div>
+                    <div className="text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">6.291 SOL</div>
+                    <div className="text-sm text-gray-500">{formatSolToUsd(6.291)}</div>
                   </div>
-                  <div className="bg-magic-eden-secondary rounded-xl p-3 sm:p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
-                    <div className="text-gray-400 text-sm sm:text-base font-semibold mb-1 hover:text-white transition-colors duration-200">Floor Price</div>
-                    <div className="text-base sm:text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">5.807 SOL</div>
-                    <div className="text-xs sm:text-sm text-gray-500">{formatSolToUsd(5.807)}</div>
+                  <div className="bg-magic-eden-secondary rounded-xl p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                    <div className="text-gray-400 font-semibold mb-1 hover:text-white transition-colors duration-200">Floor Price</div>
+                    <div className="text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">5.807 SOL</div>
+                    <div className="text-sm text-gray-500">{formatSolToUsd(5.807)}</div>
                   </div>
-                  <div className="bg-magic-eden-secondary rounded-xl p-3 sm:p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
-                    <div className="text-gray-400 text-sm sm:text-base font-semibold mb-1 hover:text-white transition-colors duration-200">Floor Diff</div>
-                    <div className="text-base sm:text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">8.33%</div>
+                  <div className="bg-magic-eden-secondary rounded-xl p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                    <div className="text-gray-400 font-semibold mb-1 hover:text-white transition-colors duration-200">Floor Diff</div>
+                    <div className="text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">8.33%</div>
                   </div>
-                  <div className="bg-magic-eden-secondary rounded-xl p-3 sm:p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
-                    <div className="text-gray-400 text-sm sm:text-base font-semibold mb-1 hover:text-white transition-colors duration-200">Top Offer</div>
-                    <div className="text-base sm:text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">5.206 SOL</div>
-                    <div className="text-xs sm:text-sm text-gray-500">{formatSolToUsd(5.206)}</div>
+                  <div className="bg-magic-eden-secondary rounded-xl p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                    <div className="text-gray-400 font-semibold mb-1 hover:text-white transition-colors duration-200">Top Offer</div>
+                    <div className="text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">5.206 SOL</div>
+                    <div className="text-sm text-gray-500">{formatSolToUsd(5.206)}</div>
                   </div>
                 </div>
 
@@ -378,21 +342,21 @@ function App() {
                 <div className="bg-magic-eden-secondary rounded-xl overflow-hidden transition-all duration-200 hover:shadow-lg">
                   <button 
                     onClick={() => setIsDetailsOpen(!isDetailsOpen)}
-                    className="w-full px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between hover:bg-magic-eden-primary/50 transition-all duration-200"
+                    className="w-full px-6 py-4 flex items-center justify-between hover:bg-magic-eden-primary/50 transition-all duration-200"
                   >
                     <div className="flex items-center space-x-3">
                       <DocumentTextIcon className="w-5 h-5 text-magic-eden-accent" />
-                      <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">Details</span>
+                      <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">Details</span>
                     </div>
                     <ChevronDownIcon className={`w-5 h-5 transition-all duration-200 ${isDetailsOpen ? 'transform rotate-180' : ''}`} />
                   </button>
-                  
+
                   {isDetailsOpen && (
-                    <div className="px-4 sm:px-6 py-4 space-y-3 animate-fadeIn">
+                    <div className="px-6 py-4 space-y-3 animate-fadeIn">
                       <div className="flex justify-between items-center hover:bg-magic-eden-primary/30 p-2 rounded-lg transition-colors duration-200">
-                        <span className="text-gray-400 text-sm sm:text-base">Mint</span>
+                        <span className="text-gray-400">Mint</span>
                         <div className="flex items-center space-x-2">
-                          <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">4FN9...yJFz</span>
+                          <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">4FN9...yJFz</span>
                           <a 
                             href="https://solscan.io/token/4FN94SBtTiaGnvYVvGbDtsB3VpiLzN1mSVQNrGeGyJFz?cluster=mainnet" 
                             target="_blank" 
@@ -406,9 +370,9 @@ function App() {
                         </div>
                       </div>
                       <div className="flex justify-between items-center hover:bg-magic-eden-primary/30 p-2 rounded-lg transition-colors duration-200">
-                        <span className="text-gray-400 text-sm sm:text-base">Owner</span>
+                        <span className="text-gray-400">Owner</span>
                         <div className="flex items-center space-x-2">
-                          <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">9NJj...uS86</span>
+                          <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">9NJj...uS86</span>
                           <a 
                             href="https://solscan.io/account/9NJjVNBUeJMJY39HDYAykm91PESFbxPyyN3wyZkYuS86?cluster=mainnet" 
                             target="_blank" 
@@ -422,9 +386,9 @@ function App() {
                         </div>
                       </div>
                       <div className="flex justify-between items-center hover:bg-magic-eden-primary/30 p-2 rounded-lg transition-colors duration-200">
-                        <span className="text-gray-400 text-sm sm:text-base">On-chain Collection</span>
+                        <span className="text-gray-400">On-chain Collection</span>
                         <div className="flex items-center space-x-2">
-                          <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">DUX8...aXKm</span>
+                          <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">DUX8...aXKm</span>
                           <a 
                             href="https://solscan.io/token/DUX8SZXLKigc84BBUcYjA7PuKe2SFwXFtQVgwmBsaXKm?cluster=mainnet" 
                             target="_blank" 
@@ -438,9 +402,9 @@ function App() {
                         </div>
                       </div>
                       <div className="flex justify-between items-center hover:bg-magic-eden-primary/30 p-2 rounded-lg transition-colors duration-200">
-                        <span className="text-gray-400 text-sm sm:text-base">Token Address</span>
+                        <span className="text-gray-400">Token Address</span>
                         <div className="flex items-center space-x-2">
-                          <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">E1Fw...2MuB</span>
+                          <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">E1Fw...2MuB</span>
                           <a 
                             href="https://solscan.io/account/E1FwE3yKBF1EoxUdVofuBSPDeuKYTjzqsXAuvjbz2MuB?cluster=mainnet" 
                             target="_blank" 
@@ -454,42 +418,39 @@ function App() {
                         </div>
                       </div>
                       <div className="flex justify-between items-center hover:bg-magic-eden-primary/30 p-2 rounded-lg transition-colors duration-200">
-                        <span className="text-gray-400 text-sm sm:text-base">Token Standard</span>
-                        <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">Programmable NFT</span>
+                        <span className="text-gray-400">Token Standard</span>
+                        <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">Programmable NFT</span>
                       </div>
                       <div className="flex justify-between items-center hover:bg-magic-eden-primary/30 p-2 rounded-lg transition-colors duration-200">
-                        <span className="text-gray-400 text-sm sm:text-base">Royalties</span>
-                        <span className="font-semibold text-sm sm:text-base hover:text-magic-eden-accent transition-colors duration-200">5%</span>
+                        <span className="text-gray-400">Royalties</span>
+                        <span className="font-semibold hover:text-magic-eden-accent transition-colors duration-200">5%</span>
                       </div>
                     </div>
                   )}
                 </div>
               </>
             ) : (
-              <div className="space-y-2 sm:space-y-4">
+              <div className="space-y-4">
                 {offers.map((offer, index) => (
-                  <div key={index} className="bg-magic-eden-secondary rounded-xl p-3 sm:p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
+                  <div key={index} className="bg-magic-eden-secondary rounded-xl p-4 transition-all duration-200 hover:shadow-lg hover:scale-[1.02]">
+                    <div className="flex justify-between items-center">
                       <div className="space-y-1">
                         <div className="flex items-baseline space-x-2">
-                          <div className="text-base sm:text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">
+                          <div className="text-lg font-semibold hover:text-magic-eden-accent transition-colors duration-200">
                             {offer.price} SOL
                           </div>
-                          <div className="text-xs sm:text-sm text-gray-500">({formatSolToUsd(offer.price)})</div>
+                          <div className="text-sm text-gray-500">({formatSolToUsd(offer.price)})</div>
                         </div>
-                        <div className="text-xs sm:text-sm text-gray-400">
+                        <div className="text-sm text-gray-400">
                           From: {offer.from}
                         </div>
                       </div>
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
-                        <div className="text-xs sm:text-sm text-gray-400">
-                          Expires in: {formatTimeRemaining(offer.expiryTimestamp)}
-                        </div>
-                        <div className="flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-magic-eden-secondary/50 rounded-lg">
-                          <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-magic-eden-accent animate-pulse"></div>
-                          <span className="text-xs sm:text-sm text-gray-400">Active Offer</span>
-                        </div>
+                      <div className="text-sm text-gray-400">
+                        Expires in: {formatTimeRemaining(offer.expiryTimestamp)}
                       </div>
+                      <button className="h-[40px] py-0 px-4 inline-flex justify-center items-center rounded-lg text-sm transition-all duration-200 bg-magic-eden-accent hover:bg-magic-eden-accent/90 active:bg-magic-eden-accent/80 text-white font-semibold hover:scale-[1.02] hover:shadow-lg open-modal">
+                        Connect Wallet
+                      </button>
                     </div>
                   </div>
                 ))}
